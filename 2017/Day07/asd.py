@@ -1,6 +1,6 @@
 import re, collections
 
-with open("example.txt") as fp:
+with open("input.txt") as fp:
     text = fp.read()
 
 weight = {}
