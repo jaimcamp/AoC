@@ -1,6 +1,7 @@
 #!/bin/env python3
 import datetime
 
+
 def to_timestamp(date, time):
     ts = datetime.datetime.strptime(date + " " + time, "[%Y-%m-%d %H:%M]")
     return(ts)
@@ -21,4 +22,10 @@ for log in logs:
         log['status'] = 'sleep'
     elif 'wakes' in log['log']:
         log['status'] = 'up'
-print(logs)
+    else:
+        log['status'] = 'unknown'
+# print(logs)
+# nop = [log for log in logs if log['status'] == 'up']
+# print(nop)
+ids = [log['log'][1] for log in logs if log['status'] == 'start']
+print(ids)
