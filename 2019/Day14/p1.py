@@ -1,29 +1,40 @@
 #!/usr/bin/python3
 
+from collections import defaultdict
+
+
 def parse_input(string):
-    out = {}
+    out = defaultdict(dict)
     for row in string.split("\n"):
-        # print(row)
         left, right = row.split("=>")
         out_amount, ix = right.strip().split(' ')
-        out[ix] = {"out_amount": out_amount}
-        left_l = [x.strip() for x in left.split(',')]
-        print(left_l)
-        print([ix for ix in [x.split(' ') for x in left_l]])
-        # for sides in row.split("=>"):
-            # for solos in sides.strip().split(","):
-                # print(solos)
-    # dd = [solos for row in string.split("\n") for sides in row.split("=>") for solos in sides.strip().split(",")]
-    # out = string.split("\n")
-    # out = [x.split("=>") for x in out]
-    # out = [[y.strip() for y in x] for x in out]
-    # out = [x.strip() for x in string]
+        out[ix]["out_amount"] = int(out_amount)
+        out[ix]["sources"] = []
+        for element in [v.split(' ') for v in [x.strip()
+                        for x in left.split(',')]]:
+            out[ix]["sources"].append({"source": element[1],
+                                       "amount": int(element[0])})
     return out
+
 
 def read_input(f_in):
     return open(f_in).read().rstrip()
 
-if __name__=="__main__":
+
+def get_sources(dic_source, element, base='ORE'):
+    element_info = dic_source[element]
+    out_amount = element_info['out_amount']
+    total = 0
+    for ingredient in element_info["sources"]:
+        print(ingredient)
+        if ingredient['source'] == base:
+            total += ingredient['amount']
+        else:
+            total += (get_sources(dic_source, ingredient['source'], base)[0] * ingredient['amount'])
+    return total, out_amount
+
+
+if __name__ == "__main__":
     string = read_input("ex11.txt")
     input_obj = parse_input(string)
-    print(input_obj)
+    print(get_sources(input_obj, "C"))
