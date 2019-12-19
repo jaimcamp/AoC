@@ -145,7 +145,7 @@ if __name__ == "__main__":
 
     A = Incode('input.txt')
     A.input[0] = 2
-    program = "A,C\nR,6,L,11\nR,12,L,8,L,10\nR,8,R,9,R,12,L,8,L\nn\n"
+    program = "A,C,B\nR,6,L,10\n10,R,6\nR,8,R,8,R,12,L,8,L\nn\n"
     run_codes = [ord(c) for c in program][::-1]
     print(run_codes)
     A.run(run_codes, False)
