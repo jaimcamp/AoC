@@ -12,7 +12,7 @@ while not A.stop:
         A.halt = False
         A.reset_output()
 
-instructions = [ord(x) for x in 'NOT C J\nNOT A T\nOR T J\nNOT E T\nOR T J\nAND D J\nAND F J\nRUN\n']
+instructions = [ord(x) for x in 'NOT C T\nAND D T\nOR T J\nNOT F T\nOR H T\nAND T J\nNOT A T\nOR T J\nNOT B T\nAND A T\nAND D T\nOR T J\nRUN\n']
 A.run(instructions)
 for l in A.output:
     try:
