@@ -1,0 +1,33 @@
+north
+take mouse
+north
+take pointer
+south
+south
+west
+take monolith
+north
+west
+take food ration
+south
+take space law space brochure
+north
+east
+south
+south
+take sand
+south
+west
+take asterisk
+south
+take mutex
+north
+east
+north
+north
+east
+south
+south
+west
+south
+inv
